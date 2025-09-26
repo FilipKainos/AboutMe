@@ -6,6 +6,10 @@
     <title>Filip Szwerluga - Software Developer</title>
     <meta name="description" content="Filip Szwerluga - Software Engineer specializing in AI integration, full-stack development, and modern web technologies.">
     
+    <!-- Performance optimizations -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    <link rel="prefetch" href="LinkedInPhotoCopy.jpg">
+    
     <!-- Preload critical resources -->
     <link rel="preload" href="LinkedInPhotoCopy.jpg" as="image">
     <link rel="preload" href="styles.css" as="style">
@@ -16,10 +20,31 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Critical CSS inline for faster rendering -->
+    <style>
+        /* Critical above-the-fold styles */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #111827; 
+            color: white; 
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .hero-section { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        /* Font display optimization */
+        * { font-display: swap; }
+    </style>
+    
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Fallback for Font Awesome if CDN fails -->
+    <!-- Fallback for Font Awesome -->
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
 </head>
 <body class="bg-gray-900 text-white overflow-x-hidden">
@@ -56,13 +81,13 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="about" class="min-h-screen flex items-center justify-center px-4 pt-16">
+    <section id="about" class="hero-section min-h-screen flex items-center justify-center px-4 pt-16">
         <div class="max-w-4xl mx-auto text-center">
             <!-- Profile Image -->
             <div class="mb-8 flex justify-center">
                 <div class="relative">
                     <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 p-1 animate-glow">
-                        <img src="LinkedInPhotoCopy.jpg" alt="Filip Szwerluga" class="w-full h-full rounded-full object-cover" loading="eager" width="160" height="160">
+                        <img src="LinkedInPhotoCopy.jpg" alt="Filip Szwerluga" class="w-full h-full rounded-full object-cover" loading="eager" width="160" height="160" decoding="async" fetchpriority="high">
                     </div>
                     <!-- Floating ring -->
                     <div class="absolute inset-0 rounded-full border-2 border-blue-400/30 animate-ping"></div>
