@@ -2,9 +2,25 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filip Szwerluga - Software Developer</title>
-    <meta name="description" content="Filip Szwerluga - Software Engineer specializing in AI integration, full-stack development, and modern web technologies.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Filip Szwerluga - Software Engineer | AI & Full Stack Developer</title>
+    <meta name="description" content="Filip Szwerluga - Software Engineer specializing in AI integration, full-stack development, and modern web technologies. View my portfolio of interactive projects.">
+    
+    <!-- Performance & SEO optimizations -->
+    <meta name="theme-color" content="#1e40af">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://filipkainos.github.io/AboutMe/">
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Filip Szwerluga - Software Engineer">
+    <meta property="og:description" content="Software Engineer specializing in AI integration and full-stack development. View my interactive projects and technical achievements.">
+    <meta property="og:url" content="https://filipkainos.github.io/AboutMe/">
+    <meta property="og:image" content="https://filipkainos.github.io/AboutMe/LinkedInPhotoCopy.jpg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Filip Szwerluga - Software Engineer">
+    <meta name="twitter:description" content="Software Engineer specializing in AI integration and full-stack development.">
     
     <!-- Performance optimizations -->
     <meta http-equiv="Cache-Control" content="max-age=31536000">
@@ -40,9 +56,13 @@
         * { font-display: swap; }
     </style>
     
-    <!-- Non-critical CSS loaded asynchronously -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Optimized resource loading -->
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+    
+    <!-- Resource hints for performance -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
     
     <!-- Fallback for Font Awesome -->
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
@@ -634,6 +654,30 @@
         </div>
     </footer>
 
+    <!-- Performance monitoring & Service Worker -->
+    <script>
+        // Register service worker for caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/AboutMe/sw.js')
+                    .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // Measure performance
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
+    
     <!-- External JavaScript -->
     <script src="script.js" defer></script>
 </body>

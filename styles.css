@@ -132,6 +132,28 @@ img {
         animation: none;
         background: linear-gradient(135deg, #1e40af, #7c3aed, #6366f1);
     }
+    
+    /* Disable expensive animations on mobile */
+    .animate-float {
+        animation: none;
+        transform: translateY(0);
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .animate-gradient-x {
+        animation: none;
+        background: linear-gradient(135deg, #1e40af, #7c3aed, #6366f1);
+    }
+}
+
+/* Performance optimization for animations */
+@media (max-width: 768px) {
+    /* Simplify complex gradients on mobile */
+    .bg-gradient-to-br {
+        background: #1e40af;
+    }
 }
 
 /* Navigation background transition */
