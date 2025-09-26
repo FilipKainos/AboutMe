@@ -73,6 +73,53 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Performance optimizations */
+* {
+    box-sizing: border-box;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* GPU acceleration for animations */
+.animate-float,
+.animate-glow,
+.animate-gradient-x {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize heavy animations */
+.project-card,
+.achievement-card {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize floating particles for performance */
+.floating-particles .particle {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+/* Reduce complexity on slower devices */
+@media (max-width: 1024px) {
+    .animate-gradient-x {
+        animation: none;
+        background: linear-gradient(135deg, #1e40af, #7c3aed, #6366f1);
+    }
+}
+
 /* Navigation background transition */
 .nav-scrolled {
     background-color: rgba(0, 0, 0, 0.4);

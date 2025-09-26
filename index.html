@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filip Szwerluga - Software Developer</title>
+    <meta name="description" content="Filip Szwerluga - Software Engineer specializing in AI integration, full-stack development, and modern web technologies.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="LinkedInPhotoCopy.jpg" as="image">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fallback for Font Awesome if CDN fails -->
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
 </head>
 <body class="bg-gray-900 text-white overflow-x-hidden">
     <!-- Animated Background -->
@@ -48,7 +62,7 @@
             <div class="mb-8 flex justify-center">
                 <div class="relative">
                     <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 p-1 animate-glow">
-                        <img src="LinkedInPhotoCopy.jpg" alt="Filip Szwerluga" class="w-full h-full rounded-full object-cover">
+                        <img src="LinkedInPhotoCopy.jpg" alt="Filip Szwerluga" class="w-full h-full rounded-full object-cover" loading="eager" width="160" height="160">
                     </div>
                     <!-- Floating ring -->
                     <div class="absolute inset-0 rounded-full border-2 border-blue-400/30 animate-ping"></div>
@@ -596,6 +610,6 @@
     </footer>
 
     <!-- External JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

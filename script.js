@@ -57,12 +57,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Main initialization function
 function initializePortfolio() {
-    setupSmoothScrolling();
-    setupNavigationEffects();
-    setupScrollAnimations();
-    setupParticleAnimations();
-    setupCardHoverEffects();
-    setupTypingEffect();
+    // Use requestIdleCallback for non-critical initializations
+    if (window.requestIdleCallback) {
+        requestIdleCallback(() => {
+            setupParticleAnimations();
+            setupCardHoverEffects();
+            setupTypingEffect();
+        });
+        
+        // Critical initializations immediately
+        setupSmoothScrolling();
+        setupNavigationEffects();
+        setupScrollAnimations();
+    } else {
+        // Fallback for browsers without requestIdleCallback
+        setupSmoothScrolling();
+        setupNavigationEffects();
+        setupScrollAnimations();
+        setTimeout(() => {
+            setupParticleAnimations();
+            setupCardHoverEffects();
+            setupTypingEffect();
+        }, 100);
+    }
 }
 
 // Smooth scrolling for navigation links
