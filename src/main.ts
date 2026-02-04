@@ -24,7 +24,7 @@ function initAfterLoad() {
   initTypingEffect();
   initMagneticButtons();
   initTextReveal();
-  initWaveEffect();
+  // initWaveEffect(); // Disabled - cursor ripple effect removed
   initGlitchEffect();
   initHolographicCards();
   initScrollProgress();
@@ -64,7 +64,7 @@ function initProjectStatusCheck() {
       await fetch(url, { 
         method: 'HEAD',
         mode: 'no-cors',
-        signal: controller.signal
+        signal: controller.signal,
       });
       
       clearTimeout(timeoutId);
@@ -128,7 +128,7 @@ function initPreloader() {
     if (preloaderText) {
       const phraseIndex = Math.min(
         Math.floor(loadProgress / 25),
-        loadingPhrases.length - 1
+        loadingPhrases.length - 1,
       );
       preloaderText.textContent = loadingPhrases[phraseIndex];
     }
@@ -199,7 +199,7 @@ function initBackToTop() {
 function initFloatingIcons() {
   const icons = document.querySelectorAll('.floating-icon');
   
-  icons.forEach((icon: any, index: number) => {
+  icons.forEach((icon: Element, index: number) => {
     gsap.to(icon, {
       y: -10,
       duration: 2 + index * 0.3,
@@ -235,7 +235,7 @@ function initAnimations() {
   const titleEl = document.querySelector('.hero-title');
   if (titleEl) {
     titleEl.innerHTML = chars.map(char => 
-      `<span class="char inline-block" style="display: inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+      `<span class="char inline-block" style="display: inline-block">${char === ' ' ? '&nbsp;' : char}</span>`,
     ).join('');
   }
   
@@ -297,7 +297,7 @@ function initAnimations() {
     }, '-=0.4');
 
   // Scroll-triggered sections
-  gsap.utils.toArray('.animate-section').forEach((section: any) => {
+  (gsap.utils.toArray('.animate-section') as Element[]).forEach((section: Element) => {
     gsap.fromTo(section, {
       y: 100,
       opacity: 0,
@@ -316,7 +316,7 @@ function initAnimations() {
   });
 
   // Achievement cards with INSANE 3D effect
-  gsap.utils.toArray('.achievement-card').forEach((card: any, index: number) => {
+  (gsap.utils.toArray('.achievement-card') as Element[]).forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
@@ -345,28 +345,28 @@ function initAnimations() {
       ease: 'expo.out',
       delay: index * 0.15,
     })
-    .to(card, {
-      duration: 0.6,
-      boxShadow: '0 0 60px rgba(59, 130, 246, 0.4), 0 0 100px rgba(139, 92, 246, 0.2)',
-      ease: 'power2.inOut',
-    }, '-=0.6')
-    .from(card.querySelectorAll('svg'), {
-      duration: 0.8,
-      scale: 0,
-      rotation: 360,
-      ease: 'back.out(2)',
-    }, '-=0.8')
-    .from(card.querySelectorAll('h3, p, .tech-badge'), {
-      duration: 0.6,
-      opacity: 0,
-      y: 20,
-      stagger: 0.05,
-      ease: 'power2.out',
-    }, '-=0.4');
+      .to(card, {
+        duration: 0.6,
+        boxShadow: '0 0 60px rgba(59, 130, 246, 0.4), 0 0 100px rgba(139, 92, 246, 0.2)',
+        ease: 'power2.inOut',
+      }, '-=0.6')
+      .from(card.querySelectorAll('svg'), {
+        duration: 0.8,
+        scale: 0,
+        rotation: 360,
+        ease: 'back.out(2)',
+      }, '-=0.8')
+      .from(card.querySelectorAll('h3, p, .tech-badge'), {
+        duration: 0.6,
+        opacity: 0,
+        y: 20,
+        stagger: 0.05,
+        ease: 'power2.out',
+      }, '-=0.4');
   });
 
   // Project cards with SPECTACULAR flip-in effect
-  gsap.utils.toArray('.project-card').forEach((card: any, index: number) => {
+  (gsap.utils.toArray('.project-card') as Element[]).forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
@@ -393,22 +393,22 @@ function initAnimations() {
       ease: 'expo.out',
       delay: index * 0.1,
     })
-    .to(card, {
-      duration: 1,
-      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(59, 130, 246, 0.3)',
-      ease: 'power2.out',
-    }, '-=1')
-    .from(card.querySelector('div:first-child'), {
-      duration: 0.8,
-      scale: 1.5,
-      rotation: 180,
-      opacity: 0,
-      ease: 'back.out(2)',
-    }, '-=1');
+      .to(card, {
+        duration: 1,
+        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(59, 130, 246, 0.3)',
+        ease: 'power2.out',
+      }, '-=1')
+      .from(card.querySelector('div:first-child'), {
+        duration: 0.8,
+        scale: 1.5,
+        rotation: 180,
+        opacity: 0,
+        ease: 'back.out(2)',
+      }, '-=1');
   });
 
   // Timeline items
-  gsap.utils.toArray('.timeline-item').forEach((item: any, index: number) => {
+  (gsap.utils.toArray('.timeline-item') as Element[]).forEach((item: Element, index: number) => {
     gsap.from(item, {
       scrollTrigger: {
         trigger: item,
@@ -435,24 +435,25 @@ function initAnimations() {
         scrollTrigger: {
           trigger: '#technologies',
           start: 'top 85%',
-        }
-      }
+        },
+      },
     );
   }
 
   // Stats counter animation
-  gsap.utils.toArray('.stat-number').forEach((stat: any) => {
+  (gsap.utils.toArray('.stat-number') as HTMLElement[]).forEach((stat: HTMLElement) => {
     gsap.from(stat, {
       scrollTrigger: {
         trigger: stat,
         start: 'top 90%',
       },
-      textContent: 0,
+      textContent: '0',
       duration: 2,
       snap: { textContent: 1 },
       ease: 'power1.out',
       onUpdate: function() {
-        stat.textContent = Math.ceil(stat.textContent);
+        const currentValue = parseFloat(stat.textContent || '0');
+        stat.textContent = Math.ceil(currentValue).toString();
       },
     });
   });
@@ -487,12 +488,12 @@ function initSmoothScroll() {
       const target = document.querySelector(href!);
       if (target) {
         gsap.to(window, {
-          duration: 1,
+          duration: 0.6,
           scrollTo: {
             y: target,
             offsetY: 80,
           },
-          ease: 'power3.inOut',
+          ease: 'power2.out',
         });
       }
     });
@@ -583,8 +584,9 @@ function initContactForm() {
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    // Data would be collected here for API integration
+    // const formData = new FormData(form);
+    // const data = Object.fromEntries(formData.entries());
     const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const originalText = submitButton?.textContent || 'Send Message';
     
@@ -597,7 +599,7 @@ function initContactForm() {
     // Simulate sending (replace with actual API call in production)
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log('Form submitted:', data);
+    // Form submitted successfully (data would be sent to API)
     
     // Show success state
     if (submitButton) {
@@ -622,7 +624,8 @@ function initContactForm() {
 // ============================================================================
 
 function initParticles() {
-  const particleCount = window.innerWidth < 768 ? 30 : 50;
+  // Reduced particle count for better performance
+  const particleCount = window.innerWidth < 768 ? 15 : 30;
   const container = document.querySelector('.particle-container');
   
   if (!container) return;
@@ -666,11 +669,12 @@ function init3DCards() {
   
   const cards = document.querySelectorAll('.card-3d');
   
-  cards.forEach((card: any) => {
-    card.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const mouseEvent = e as MouseEvent;
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = mouseEvent.clientX - rect.left;
+      const y = mouseEvent.clientY - rect.top;
       
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
@@ -725,7 +729,7 @@ function init3DCards() {
     });
   });
   
-  function createSpotlight(card: any) {
+  function createSpotlight(card: Element) {
     const spotlight = document.createElement('div');
     spotlight.className = 'card-spotlight';
     spotlight.style.cssText = `
@@ -835,16 +839,17 @@ function initTypingEffect() {
 function initMagneticButtons() {
   const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
   
-  buttons.forEach((button: any) => {
-    button.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+  buttons.forEach((button) => {
+    button.addEventListener('mousemove', (e) => {
+      const mouseEvent = e as MouseEvent;
+      const rect = (button as HTMLElement).getBoundingClientRect();
+      const x = mouseEvent.clientX - rect.left - rect.width / 2;
+      const y = mouseEvent.clientY - rect.top - rect.height / 2;
       
       gsap.to(button, {
-        x: x * 0.3,
-        y: y * 0.3,
-        duration: 0.3,
+        x: x * 0.2,
+        y: y * 0.2,
+        duration: 0.15,
         ease: 'power2.out',
       });
     });
@@ -853,18 +858,19 @@ function initMagneticButtons() {
       gsap.to(button, {
         x: 0,
         y: 0,
-        duration: 0.5,
-        ease: 'elastic.out(1, 0.3)',
+        duration: 0.2,
+        ease: 'power2.out',
       });
     });
     
     // Add ripple effect on click
-    button.addEventListener('click', (e: MouseEvent) => {
+    button.addEventListener('click', (e) => {
+      const mouseEvent = e as MouseEvent;
       const ripple = document.createElement('span');
-      const rect = button.getBoundingClientRect();
+      const rect = (button as HTMLElement).getBoundingClientRect();
       const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
+      const x = mouseEvent.clientX - rect.left - size / 2;
+      const y = mouseEvent.clientY - rect.top - size / 2;
       
       ripple.style.cssText = `
         position: absolute;
@@ -877,8 +883,8 @@ function initMagneticButtons() {
         pointer-events: none;
       `;
       
-      button.style.position = 'relative';
-      button.style.overflow = 'hidden';
+      (button as HTMLElement).style.position = 'relative';
+      (button as HTMLElement).style.overflow = 'hidden';
       button.appendChild(ripple);
       
       gsap.fromTo(ripple,
@@ -886,10 +892,10 @@ function initMagneticButtons() {
         {
           scale: 2,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.4,
           ease: 'power2.out',
           onComplete: () => ripple.remove(),
-        }
+        },
       );
     });
   });
@@ -979,9 +985,10 @@ function initWaveEffect() {
 function initGlitchEffect() {
   const glitchElements = document.querySelectorAll('.gradient-text');
   
-  glitchElements.forEach((el: any) => {
+  glitchElements.forEach((el: Element) => {
     setInterval(() => {
-      if (Math.random() > 0.95) {
+      // Reduced frequency from 0.95 to 0.98 for better performance
+      if (Math.random() > 0.98) {
         const tl = gsap.timeline();
         
         tl.to(el, {
@@ -990,18 +997,18 @@ function initGlitchEffect() {
           skewX: 10,
           filter: 'hue-rotate(90deg)',
         })
-        .to(el, {
-          duration: 0.05,
-          x: 5,
-          skewX: -10,
-          filter: 'hue-rotate(-90deg)',
-        })
-        .to(el, {
-          duration: 0.05,
-          x: 0,
-          skewX: 0,
-          filter: 'hue-rotate(0deg)',
-        });
+          .to(el, {
+            duration: 0.05,
+            x: 5,
+            skewX: -10,
+            filter: 'hue-rotate(-90deg)',
+          })
+          .to(el, {
+            duration: 0.05,
+            x: 0,
+            skewX: 0,
+            filter: 'hue-rotate(0deg)',
+          });
       }
     }, 100);
   });
@@ -1014,7 +1021,7 @@ function initGlitchEffect() {
 function initHolographicCards() {
   const cards = document.querySelectorAll('.glass-card-hover, .achievement-card, .project-card');
   
-  cards.forEach((card: any) => {
+  cards.forEach((card) => {
     // Create holographic overlay
     const overlay = document.createElement('div');
     overlay.className = 'holographic-overlay';
@@ -1039,8 +1046,8 @@ function initHolographicCards() {
       transition: opacity 0.3s;
     `;
     
-    card.style.position = 'relative';
-    card.style.overflow = 'hidden';
+    (card as HTMLElement).style.position = 'relative';
+    (card as HTMLElement).style.overflow = 'hidden';
     card.appendChild(overlay);
     
     card.addEventListener('mouseenter', () => {
@@ -1051,7 +1058,7 @@ function initHolographicCards() {
       
       gsap.to(overlay, {
         backgroundPosition: '200% 200%',
-        duration: 2,
+        duration: 3,
         ease: 'none',
         repeat: -1,
       });
@@ -1064,13 +1071,14 @@ function initHolographicCards() {
       });
     });
     
-    // Add sparkle particles on hover
-    card.addEventListener('mousemove', (e: MouseEvent) => {
-      if (Math.random() > 0.9) {
+    // Add sparkle particles on hover (optimized frequency)
+    card.addEventListener('mousemove', (e) => {
+      const mouseEvent = e as MouseEvent;
+      if (Math.random() > 0.95) {
         const sparkle = document.createElement('div');
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
         
         sparkle.style.cssText = `
           position: absolute;
@@ -1119,4 +1127,4 @@ export {
   initScrollProgress,
   initBackToTop,
   initFloatingIcons,
-  initProjectStatusCheck,};
+  initProjectStatusCheck};

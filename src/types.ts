@@ -23,12 +23,14 @@ export interface Project {
   technologies: string[];
   status: 'live' | 'coming-soon' | 'planning' | 'in-progress';
   link?: string;
+  category?: 'major' | 'minor';
 }
 
 export interface TimelineEvent {
   year: string;
   title: string;
   description: string;
+  category?: 'professional' | 'personal';
 }
 
 export interface Technology {
