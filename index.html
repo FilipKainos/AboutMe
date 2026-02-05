@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="description" content="Filip Szwerluga - Software Engineer passionate about creating innovative software solutions with AI and modern technologies." />
+  <meta name="keywords" content="Filip Szwerluga, Software Engineer, Web Developer, JavaScript, TypeScript, React, AI, Portfolio, Full Stack" />
+  <meta name="author" content="Filip Szwerluga" />
+  <meta name="theme-color" content="#1e3a5f" />
+  
+  <!-- Performance Hints -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Filip Szwerluga - Software Engineer" />
+  <meta property="og:description" content="Passionate about creating innovative software solutions that make a difference." />
+  <meta property="og:url" content="https://filipkainos.github.io" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Filip Szwerluga - Software Engineer" />
+  <meta property="twitter:description" content="Passionate about creating innovative software solutions that make a difference." />
+  
+  <title>Filip Szwerluga | Software Engineer</title>
+  
+  <link rel="icon" type="image/svg+xml" href="/AboutMe/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Lucide Icons CDN - Async loading for better performance -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script type="module" crossorigin src="/AboutMe/assets/main-DoBlOd6O.js"></script>
+  <link rel="modulepreload" crossorigin href="/AboutMe/assets/vendor-NzwLfSsh.js">
+  <link rel="stylesheet" crossorigin href="/AboutMe/assets/main-CTFlmv8o.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950">
+    <div class="preloader-content text-center">
+      <div class="preloader-logo text-4xl font-bold gradient-text mb-4">Filip Szwerluga</div>
+      <div class="preloader-bar w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+        <div class="preloader-progress h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full" style="width: 0%"></div>
+      </div>
+      <p class="preloader-text text-white/50 text-sm mt-4">Loading magic...</p>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 z-[60]" style="width: 0%"></div>
+  <!-- Particle Background -->
+  <div class="particle-container fixed inset-0 pointer-events-none z-0"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="#" class="text-xl md:text-2xl font-bold gradient-text whitespace-nowrap">Filip Szwerluga</a>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#about" class="text-white/80 hover:text-white transition-colors">About</a>
+          <a href="#achievements" class="text-white/80 hover:text-white transition-colors">Skills</a>
+          <a href="#projects" class="text-white/80 hover:text-white transition-colors">Projects</a>
+          <a href="#experience" class="text-white/80 hover:text-white transition-colors">Experience</a>
+          <a href="#contact" class="btn-primary">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden mobile-menu-button text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+          <svg class="menu-icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg class="close-icon w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 invisible transition-all duration-300 md:hidden z-40"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-72 glass-card transform translate-x-full transition-transform duration-300 ease-out md:hidden z-50">
+      <div class="flex flex-col p-8 space-y-6 mt-20">
+        <a href="#about" class="mobile-menu-link text-white/80 hover:text-white transition-colors text-lg flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-sm">👤</span>
+          About
+        </a>
+        <a href="#achievements" class="mobile-menu-link text-white/80 hover:text-white transition-colors text-lg flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-sm">🏆</span>
+          Skills
+        </a>
+        <a href="#projects" class="mobile-menu-link text-white/80 hover:text-white transition-colors text-lg flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-sm">💻</span>
+          Projects
+        </a>
+        <a href="#experience" class="mobile-menu-link text-white/80 hover:text-white transition-colors text-lg flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-sm">🚀</span>
+          Experience
+        </a>
+        <a href="#technologies" class="mobile-menu-link text-white/80 hover:text-white transition-colors text-lg flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-sm">🛠️</span>
+          Technologies
+        </a>
+        <div class="pt-4 border-t border-white/10">
+          <a href="#contact" class="btn-primary text-center w-full block">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl float-element"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl float-element"></div>
+    </div>
+    
+    <div class="section-container relative z-10 text-center">
+      <h1 class="hero-title text-4xl sm:text-6xl md:text-8xl font-bold mb-6">
+        <span class="gradient-text whitespace-nowrap">Filip Szwerluga</span>
+      </h1>
+      <p class="hero-subtitle text-xl sm:text-2xl md:text-4xl font-display mb-4 text-blue-300">
+        Software Engineer
+      </p>
+      <p class="hero-description text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed">
+        Passionate about creating innovative software solutions that make a difference. 
+        Leveraging AI and modern technologies to craft beautiful code and exceptional user experiences.
+      </p>
+      
+      <div class="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+      
+      <div class="hero-scroll-indicator">
+        <i data-lucide="chevron-down" class="animate-bounce" style="width: 32px; height: 32px;"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="animate-section section-container relative -mt-16">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-1/2 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    </div>
+    
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">About Me</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      Crafting digital experiences with passion and precision
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      <!-- Profile Visual -->
+      <div class="relative group">
+        <div class="aspect-square rounded-3xl overflow-hidden glass-card p-1">
+          <div class="w-full h-full rounded-3xl bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">
+            <!-- Code-themed visual -->
+            <div class="absolute inset-0 opacity-30">
+              <pre class="text-xs text-green-400 font-mono p-4 leading-relaxed overflow-hidden">
+<span class="text-blue-400">const</span> developer = {
+  name: <span class="text-yellow-300">"Filip Szwerluga"</span>,
+  role: <span class="text-yellow-300">"Software Engineer"</span>,
+  company: <span class="text-yellow-300">"Kainos"</span>,
+  location: <span class="text-yellow-300">"Northern Ireland"</span>,
+  skills: [<span class="text-yellow-300">"TypeScript"</span>, <span class="text-yellow-300">"React"</span>, <span class="text-yellow-300">"Node.js"</span>],
+  tools: [<span class="text-yellow-300">"Claude"</span>, <span class="text-yellow-300">"Copilot"</span>, <span class="text-yellow-300">"GSAP"</span>],
+  passion: <span class="text-yellow-300">"Building brilliant software"</span>,
+  coffee: <span class="text-purple-400">true</span>,
+  learning: <span class="text-purple-400">true</span>
+};
+
+<span class="text-purple-400">async function</span> <span class="text-blue-300">createAwesome</span>(idea, technology) {
+  <span class="text-blue-400">const</span> requirements = <span class="text-blue-400">await</span> analyse(idea);
+  <span class="text-blue-400">const</span> design = architect(requirements);
+  
+  <span class="text-blue-400">const</span> code = developer.skills
+    .<span class="text-blue-300">map</span>(skill => <span class="text-blue-300">innovate</span>(skill, technology))
+    .<span class="text-blue-300">filter</span>(result => result.isAmazing)
+    .<span class="text-blue-300">reduce</span>((acc, cur) => <span class="text-blue-300">merge</span>(acc, cur));
+  
+  <span class="text-blue-400">const</span> tested = <span class="text-blue-400">await</span> runTests(code);
+  <span class="text-blue-400">return</span> deploy(tested, <span class="text-yellow-300">"production"</span>);
+}
+              </pre>
+            </div>
+            
+            <!-- Central Icon -->
+            <div class="relative z-10 text-center">
+              <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-purple-500/30">
+                <span class="text-5xl font-bold text-white">FS</span>
+              </div>
+              <p class="mt-4 text-lg font-semibold text-white/80">Software Engineer</p>
+            </div>
+            
+            <!-- Floating Tech Icons -->
+            <div class="absolute top-4 left-4 floating-icon glass-card p-3 rounded-xl">
+              <i data-lucide="laptop" class="text-blue-400" style="width: 24px; height: 24px;"></i>
+            </div>
+            <div class="absolute top-4 right-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 0.5s;">
+              <i data-lucide="rocket" class="text-purple-400" style="width: 24px; height: 24px;"></i>
+            </div>
+            <div class="absolute bottom-4 left-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 1s;">
+              <i data-lucide="zap" class="text-yellow-400" style="width: 24px; height: 24px;"></i>
+            </div>
+            <div class="absolute bottom-4 right-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 1.5s;">
+              <i data-lucide="target" class="text-pink-400" style="width: 24px; height: 24px;"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full opacity-50 blur-2xl group-hover:opacity-80 transition-opacity"></div>
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full opacity-50 blur-2xl group-hover:opacity-80 transition-opacity"></div>
+      </div>
+      
+      <!-- About Content -->
+      <div class="space-y-6">
+        <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
+          <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
+            <i data-lucide="target" class="text-blue-400" style="width: 28px; height: 28px;"></i> My Mission
+          </h3>
+          <p class="text-white/70 leading-relaxed">
+            I'm a Software Engineer at Kainos, passionate about creating innovative software solutions that make a real difference. I believe in the power of clean code, intuitive design, and cutting-edge technology to solve complex problems.
+          </p>
+        </div>
+        
+        <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
+          <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
+            <i data-lucide="sparkles" class="text-purple-400" style="width: 28px; height: 28px;"></i> My Approach
+          </h3>
+          <p class="text-white/70 leading-relaxed">
+            I embrace AI-powered development, leveraging tools like GitHub Copilot, Claude (Haiku, Sonnet and Opus) and Gemini 3 Pro to enhance productivity whilst maintaining code quality. Every project is an opportunity to learn, innovate, and push the boundaries of what's possible.
+          </p>
+        </div>
+        
+        <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
+          <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
+            <i data-lucide="heart" class="text-pink-400" style="width: 28px; height: 28px;"></i> What Drives Me
+          </h3>
+          <p class="text-white/70 leading-relaxed">
+            The thrill of turning ideas into reality. Whether it's a sleek web application, an interactive game, or an automation tool—I love seeing concepts come to life through code.
+          </p>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="flex flex-wrap gap-4 pt-4">
+          <div class="glass-card px-4 py-2 flex items-center gap-2">
+            <i data-lucide="map-pin" class="text-green-400" style="width: 18px; height: 18px;"></i>
+            <span class="text-white/70">Northern Ireland</span>
+          </div>
+          <div class="glass-card px-4 py-2 flex items-center gap-2">
+            <i data-lucide="briefcase" class="text-blue-400" style="width: 18px; height: 18px;"></i>
+            <span class="text-white/70">Kainos</span>
+          </div>
+          <div class="glass-card px-4 py-2 flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="text-purple-400" style="width: 18px; height: 18px;"></i>
+            <span class="text-white/70">Always Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">Software Achievements</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      Expertise across the full stack of modern web development
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Achievement Card 1 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-blue-400 mb-4">
+          <i data-lucide="code-2" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Full Stack Development</h3>
+        <p class="text-white/70 mb-4">Building robust web applications with React, TypeScript, Express.js and modern frameworks including Nunjucks templating.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">TypeScript</span>
+          <span class="tech-badge">Express.js</span>
+        </div>
+      </div>
+
+      <!-- Achievement Card 2 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-purple-400 mb-4">
+          <i data-lucide="palette" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Frontend & Styling</h3>
+        <p class="text-white/70 mb-4">Creating beautiful, responsive interfaces with modern CSS frameworks, animations and attention to detail.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">GSAP</span>
+          <span class="tech-badge">Tailwind</span>
+          <span class="tech-badge">DaisyUI</span>
+          <span class="tech-badge">Lucide</span>
+        </div>
+      </div>
+
+      <!-- Achievement Card 3 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-pink-400 mb-4">
+          <i data-lucide="database" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Database Management</h3>
+        <p class="text-white/70 mb-4">Designing and optimising relational databases with MySQL and PostgreSQL, including efficient queries and data modelling.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">SQL</span>
+        </div>
+      </div>
+
+      <!-- Achievement Card 4 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-green-400 mb-4">
+          <i data-lucide="server" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">DevOps & Deployment</h3>
+        <p class="text-white/70 mb-4">Experienced in CI/CD pipelines, GitHub Actions, and automated deployment strategies.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">GitHub Actions</span>
+          <span class="tech-badge">CI/CD</span>
+        </div>
+      </div>
+
+      <!-- Achievement Card 5 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-yellow-400 mb-4">
+          <i data-lucide="brain" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">AI Integration</h3>
+        <p class="text-white/70 mb-4">Leveraging artificial intelligence to enhance development workflows and create intelligent solutions.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">AI Tools</span>
+          <span class="tech-badge">Automation</span>
+        </div>
+      </div>
+
+      <!-- Achievement Card 6 -->
+      <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
+        <div class="text-red-400 mb-4">
+          <i data-lucide="git-branch" class="" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Version Control Expert</h3>
+        <p class="text-white/70 mb-4">Advanced Git workflows, collaborative development, and project management best practices.</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">Git</span>
+          <span class="tech-badge">Collaboration</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">Featured Projects</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      Innovative solutions showcasing technical expertise and creative problem-solving
+    </p>
+
+    <!-- Major Projects -->
+    <div class="mb-16">
+      <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+        <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">🚀 Major Projects</span>
+      </h3>
+      <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Calorie Tracker App -->
+        <a href="https://filipkainos.github.io/CalorieTrackerApp/" target="_blank" rel="noopener noreferrer"
+           class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
+           data-project-url="https://filipkainos.github.io/CalorieTrackerApp/">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
+            <i data-lucide="apple" class="text-green-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-green-400 transition-colors">Calorie Tracker</h3>
+          <p class="text-white/70 mb-4">Comprehensive nutrition tracking application for monitoring daily calorie intake and maintaining healthy habits.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">TypeScript</span>
+            <span class="tech-badge text-xs">React</span>
+            <span class="tech-badge text-xs">Nunjucks</span>
+            <span class="tech-badge text-xs">JavaScript</span>
+            <span class="tech-badge text-xs">HTML/CSS</span>
+          </div>
+          <div class="project-status flex items-center">
+            <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
+            <span class="status-text">Checking...</span>
+          </div>
+        </a>
+
+        <!-- 2 Player Games -->
+        <a href="https://filipkainos.github.io/2PlayerGames/index.html" target="_blank" rel="noopener noreferrer"
+           class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
+           data-project-url="https://filipkainos.github.io/2PlayerGames/index.html">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-pink-500/20 to-red-500/20 flex items-center justify-center">
+            <i data-lucide="gamepad-2" class="text-pink-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-pink-400 transition-colors">2 Player Games</h3>
+          <p class="text-white/70 mb-4">Interactive gaming collection featuring multiplayer games for competitive fun.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">HTML</span>
+            <span class="tech-badge text-xs">JavaScript</span>
+          </div>
+          <div class="project-status flex items-center">
+            <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
+            <span class="status-text">Checking...</span>
+          </div>
+        </a>
+
+        <!-- Future Major Project Placeholder -->
+        <div class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
+            <i data-lucide="rocket" class="text-yellow-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Coming Soon</h3>
+          <p class="text-white/70 mb-4">Exciting new major project in development. Stay tuned for innovative solutions.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">In Progress</span>
+          </div>
+          <div class="flex items-center text-yellow-400">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span>
+            Coming Soon
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Minor Projects -->
+    <div>
+      <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+        <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">⚡ Minor Projects</span>
+      </h3>
+      <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Team Randomiser / Sorting Hat -->
+        <a href="https://filipkainos.github.io/SortingHat/" target="_blank" rel="noopener noreferrer" 
+           class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
+           data-project-url="https://filipkainos.github.io/SortingHat/">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
+            <i data-lucide="dices" class="text-blue-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Team Randomiser</h3>
+          <p class="text-white/70 mb-4">Interactive team sorting application for fair and random team generation.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">JavaScript</span>
+            <span class="tech-badge text-xs">HTML/CSS</span>
+          </div>
+          <div class="project-status flex items-center">
+            <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
+            <span class="status-text">Checking...</span>
+          </div>
+        </a>
+
+        <!-- Egg Timer -->
+        <a href="https://filipkainos.github.io/EggTimer/" target="_blank" rel="noopener noreferrer"
+           class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
+           data-project-url="https://filipkainos.github.io/EggTimer/">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+            <i data-lucide="timer" class="text-purple-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Egg Timer</h3>
+          <p class="text-white/70 mb-4">Elegant countdown timer application with customisable intervals and audio notifications.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">HCL</span>
+            <span class="tech-badge text-xs">JavaScript</span>
+            <span class="tech-badge text-xs">CSS</span>
+            <span class="tech-badge text-xs">Shell</span>
+            <span class="tech-badge text-xs">HTML</span>
+          </div>
+          <div class="project-status flex items-center">
+            <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
+            <span class="status-text">Checking...</span>
+          </div>
+        </a>
+
+        <!-- Future Minor Project Placeholder -->
+        <div class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer">
+          <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
+            <i data-lucide="lightbulb" class="text-indigo-400" style="width: 80px; height: 80px;"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-2 group-hover:text-indigo-400 transition-colors">More Projects</h3>
+          <p class="text-white/70 mb-4">Additional mini tools and utilities currently in development.</p>
+          <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">Coming Soon</span>
+          </div>
+          <div class="flex items-center text-yellow-400">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 mr-2 animate-pulse"></span>
+            Coming Soon
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section (Personal & Professional) -->
+  <section id="experience" class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">Experience</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      A timeline of professional growth and personal development
+    </p>
+    
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+      <!-- Professional Experience -->
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+          <i data-lucide="briefcase" class="text-blue-400" style="width: 32px; height: 32px;"></i>
+          <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Professional</span>
+        </h3>
+        
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item relative pl-8 pb-12 border-l-2 border-blue-500/30">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-blue-500 ring-4 ring-blue-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-blue-400 font-bold mb-2">2025 - Present</div>
+            <h4 class="text-xl font-bold mb-2">Software Engineer @ Kainos</h4>
+            <p class="text-white/70">Developing enterprise web applications using TypeScript, Express.js, and modern frontend technologies. Implementing CI/CD pipelines and best practices.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item relative pl-8 pb-12 border-l-2 border-purple-500/30">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-purple-500 ring-4 ring-purple-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-purple-400 font-bold mb-2">2024</div>
+            <h4 class="text-xl font-bold mb-2">Full Stack Development</h4>
+            <p class="text-white/70">Built production-ready applications with MySQL databases, RESTful APIs, and responsive user interfaces.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item relative pl-8">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-pink-500 ring-4 ring-pink-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-pink-400 font-bold mb-2">2023</div>
+            <h4 class="text-xl font-bold mb-2">Education & Training</h4>
+            <p class="text-white/70">Attended Bangor Grammar School where I studied Computer Science, History and Mathematics, building a strong foundation in programming and software engineering methodologies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Projects & Growth -->
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+          <i data-lucide="sparkles" class="text-purple-400" style="width: 32px; height: 32px;"></i>
+          <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Personal</span>
+        </h3>
+        
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item relative pl-8 pb-12 border-l-2 border-green-500/30">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-green-500 ring-4 ring-green-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-green-400 font-bold mb-2">2025</div>
+            <h4 class="text-xl font-bold mb-2">Portfolio & Side Projects</h4>
+            <p class="text-white/70">Launched Calorie Tracker app, expanded gaming platform, and created Team Randomiser, Egg Timer, and 2 Player Games platforms.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item relative pl-8 pb-12 border-l-2 border-yellow-500/30">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-yellow-500 ring-4 ring-yellow-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-yellow-400 font-bold mb-2">2024</div>
+            <h4 class="text-xl font-bold mb-2">Learning & Development</h4>
+            <p class="text-white/70">Focused on learning programming in school, building foundational skills in web development and exploring different technologies.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item relative pl-8">
+          <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-orange-500 ring-4 ring-orange-500/20"></div>
+          <div class="glass-card p-6">
+            <div class="text-orange-400 font-bold mb-2">Ongoing</div>
+            <h4 class="text-xl font-bold mb-2">Continuous Learning</h4>
+            <p class="text-white/70">Exploring AI integration, cloud services (AWS), and advanced animation techniques with GSAP.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies Section -->
+  <section id="technologies" class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">Technologies & Tools</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      A comprehensive toolkit for building modern applications
+    </p>
+    
+    <div class="max-w-5xl mx-auto">
+      <!-- Frontend -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-6 text-blue-400">Frontend</h3>
+        <div class="tech-grid flex flex-wrap gap-3">
+          <span class="tech-badge">TypeScript</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+          <span class="tech-badge">Tailwind CSS</span>
+          <span class="tech-badge">DaisyUI</span>
+          <span class="tech-badge">Nunjucks</span>
+          <span class="tech-badge">GSAP</span>
+          <span class="tech-badge">Lucide Icons</span>
+        </div>
+      </div>
+
+      <!-- Backend & Database -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-6 text-purple-400">Backend & Database</h3>
+        <div class="tech-grid flex flex-wrap gap-3">
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Express.js</span>
+          <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">REST APIs</span>
+          <span class="tech-badge">Vite</span>
+        </div>
+      </div>
+
+      <!-- Tools & DevOps -->
+      <div>
+        <h3 class="text-2xl font-bold mb-6 text-pink-400">Tools & DevOps</h3>
+        <div class="tech-grid flex flex-wrap gap-3">
+          <span class="tech-badge">Git</span>
+          <span class="tech-badge">GitHub Actions</span>
+          <span class="tech-badge">VS Code</span>
+          <span class="tech-badge">GitHub Copilot</span>
+          <span class="tech-badge">Claude AI</span>
+          <span class="tech-badge">Gemini AI</span>
+          <span class="tech-badge">CI/CD</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">AWS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">By The Numbers</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+      <div class="glass-card p-8 text-center">
+        <div class="stat-value text-4xl md:text-5xl font-bold gradient-text mb-2">3+</div>
+        <div class="text-white/70">Live Projects</div>
+      </div>
+      <div class="glass-card p-8 text-center">
+        <div class="stat-value text-4xl md:text-5xl font-bold gradient-text mb-2">10+</div>
+        <div class="text-white/70">Technologies</div>
+      </div>
+      <div class="glass-card p-8 text-center">
+        <div class="stat-value text-4xl md:text-5xl font-bold gradient-text mb-2">5+</div>
+        <div class="text-white/70">GitHub Repos</div>
+      </div>
+      <div class="glass-card p-8 text-center">
+        <div class="stat-value text-4xl md:text-5xl font-bold gradient-text mb-2">2024</div>
+        <div class="text-white/70">Started Journey</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="animate-section section-container">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 gradient-text">Let's Connect</h2>
+    <p class="section-subtitle text-center mb-16 max-w-2xl mx-auto">
+      Ready to collaborate on something amazing? Let's turn ideas into reality together.
+    </p>
+    
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+      <!-- Contact Info -->
+      <div class="space-y-6">
+        <a href="https://linkedin.com/in/filipszwerluga" target="_blank" class="glass-card-hover p-6 flex items-center gap-4 block">
+          <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <i data-lucide="linkedin" class="text-blue-400" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="font-bold">LinkedIn</div>
+            <div class="text-sm text-white/70">Professional Network</div>
+          </div>
+        </a>
+
+        <a href="https://github.com/FilipKainos" target="_blank" class="glass-card-hover p-6 flex items-center gap-4 block">
+          <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+            <i data-lucide="github" class="text-purple-400" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="font-bold">GitHub</div>
+            <div class="text-sm text-white/70">Code Repository</div>
+          </div>
+        </a>
+
+        <a href="mailto:filip.szwerluga@kainos.com" class="glass-card-hover p-6 flex items-center gap-4 block">
+          <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center">
+            <i data-lucide="mail" class="text-pink-400" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="font-bold">Email</div>
+            <div class="text-sm text-white/70">Direct Contact</div>
+          </div>
+        </a>
+
+        <a href="#projects" class="glass-card-hover p-6 flex items-center gap-4 block">
+          <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
+            <i data-lucide="folder-open" class="text-yellow-400" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="font-bold">Portfolio</div>
+            <div class="text-sm text-white/70">View My Work</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="glass-card p-8">
+        <form id="contact-form" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2">Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none transition-colors"
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none transition-colors"
+              placeholder="your.email@example.com"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4" 
+              required
+              class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+              placeholder="Tell me about your project..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-purple-500/30 opacity-0 invisible transition-all duration-300 hover:scale-110 hover:shadow-xl z-50 flex items-center justify-center">
+    <i data-lucide="arrow-up" style="width: 24px; height: 24px;"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-12 relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="section-container">
+      <div class="text-center">
+        <p class="text-3xl font-bold gradient-text mb-2">Filip Szwerluga</p>
+        <p class="text-white/70 mb-6 typing-text text-lg">Building the future, one line of code at a time.</p>
+        
+        <!-- Footer Social Links -->
+        <div class="flex justify-center gap-4 mb-8">
+          <a href="https://linkedin.com/in/filipszwerluga" target="_blank" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-blue-500/20 transition-all hover:scale-110">
+            <i data-lucide="linkedin" class="text-blue-400" style="width: 20px; height: 20px;"></i>
+          </a>
+          <a href="https://github.com/FilipKainos" target="_blank" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-purple-500/20 transition-all hover:scale-110">
+            <i data-lucide="github" class="text-purple-400" style="width: 20px; height: 20px;"></i>
+          </a>
+          <a href="mailto:filip.szwerluga@kainos.com" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-pink-500/20 transition-all hover:scale-110">
+            <i data-lucide="mail" class="text-pink-400" style="width: 20px; height: 20px;"></i>
+          </a>
+        </div>
+        
+        <p class="text-white/50 text-sm">© <span id="current-year">2026</span> Filip Szwerluga. All rights reserved.</p>
+        <p class="text-white/30 text-xs mt-2">Built with 💜 using TypeScript, Tailwind CSS & GSAP</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
