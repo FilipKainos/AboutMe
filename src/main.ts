@@ -6,6 +6,30 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // ============================================================================
+// MOBILE DETECTION & PERFORMANCE UTILITIES
+// ============================================================================
+
+const isMobileDevice = (): boolean => {
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.innerWidth < 768
+  );
+};
+
+const isTouchDevice = (): boolean => {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
+const prefersReducedMotion = (): boolean => {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+// Global mobile state
+const MOBILE = isMobileDevice();
+const TOUCH_DEVICE = isTouchDevice();
+const REDUCED_MOTION = prefersReducedMotion();
+
+// ============================================================================
 // INITIALIZATION
 // ============================================================================
 
@@ -162,12 +186,21 @@ function initScrollProgress() {
   const progressBar = document.getElementById('scroll-progress');
   if (!progressBar) return;
   
+  // Use passive event listener for better scroll performance
+  let ticking = false;
+  
   window.addEventListener('scroll', () => {
-    const winScroll = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    progressBar.style.width = `${scrolled}%`;
-  });
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = `${scrolled}%`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
 }
 
 // ============================================================================
@@ -232,6 +265,8 @@ function setCurrentYear() {
 // ============================================================================
 
 function initAnimations() {
+  const isMobile = window.innerWidth < 768;
+  
   // Hero section entrance with EXPLOSIVE effects
   const heroTimeline = gsap.timeline({ defaults: { ease: 'power4.out' } });
   
@@ -320,9 +355,38 @@ function initAnimations() {
     });
   });
 
-  // Achievement cards with INSANE 3D effect
-  const isMobile = window.innerWidth < 768;
-  (gsap.utils.toArray('.achievement-card') as Element[]).forEach((card: Element, index: number) => {
+  // Achievement cards - Use Intersection Observer on mobile for smooth performance
+  const achievementCards = gsap.utils.toArray('.achievement-card') as Element[];
+  
+  if (isMobile) {
+    // Lightweight animations for mobile
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Simple fade and slide up
+          gsap.to(entry.target, {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out',
+            delay: index * 0.05, // Stagger slightly
+          });
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -5% 0px',
+      threshold: 0.1,
+    });
+    
+    achievementCards.forEach((card) => {
+      gsap.set(card, { y: 20, opacity: 0 });
+      cardObserver.observe(card);
+    });
+  } else {
+    // Full 3D animations for desktop
+    achievementCards.forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
@@ -333,15 +397,15 @@ function initAnimations() {
     });
     
     tl.fromTo(card, {
-      y: isMobile ? 50 : 150,
+      y: 150,
       opacity: 0,
-      rotationY: isMobile ? 0 : (index % 2 === 0 ? -180 : 180),
-      rotationX: isMobile ? 0 : 45,
-      scale: isMobile ? 0.8 : 0.3,
-      filter: isMobile ? 'blur(0px) brightness(1)' : 'blur(20px) brightness(2)',
+      rotationY: index % 2 === 0 ? -180 : 180,
+      rotationX: 45,
+      scale: 0.3,
+      filter: 'blur(20px) brightness(2)',
       transformOrigin: 'center center',
     }, {
-      duration: isMobile ? 0.6 : 1.2,
+      duration: 1.2,
       y: 0,
       opacity: 1,
       rotationY: 0,
@@ -369,11 +433,37 @@ function initAnimations() {
         stagger: 0.05,
         ease: 'power2.out',
       }, '-=0.4');
-  });
+    });
+  }
 
-  // Project cards with SPECTACULAR flip-in effect
-  const isMobileProjects = window.innerWidth < 768;
-  (gsap.utils.toArray('.project-card') as Element[]).forEach((card: Element, index: number) => {
+  // Project cards - Use Intersection Observer on mobile
+  const projectCards = gsap.utils.toArray('.project-card') as Element[];
+  
+  if (isMobile) {
+    const projectObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.to(entry.target, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out',
+          });
+          projectObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -5% 0px',
+      threshold: 0.1,
+    });
+    
+    projectCards.forEach((card) => {
+      gsap.set(card, { scale: 0.95, opacity: 0 });
+      projectObserver.observe(card);
+    });
+  } else {
+    projectCards.forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
@@ -384,14 +474,14 @@ function initAnimations() {
     });
     
     tl.fromTo(card, {
-      rotationY: isMobileProjects ? 0 : -180,
-      rotationX: isMobileProjects ? 0 : 45,
+      rotationY: -180,
+      rotationX: 45,
       opacity: 0,
-      scale: isMobileProjects ? 0.8 : 0,
-      z: isMobileProjects ? 0 : -500,
+      scale: 0,
+      z: -500,
       transformOrigin: 'center center',
     }, {
-      duration: isMobileProjects ? 0.6 : 1.5,
+      duration: 1.5,
       rotationY: 0,
       rotationX: 0,
       opacity: 1,
@@ -412,7 +502,8 @@ function initAnimations() {
         opacity: 0,
         ease: 'back.out(2)',
       }, '-=1');
-  });
+    });
+  }
 
   // Timeline items
   (gsap.utils.toArray('.timeline-item') as Element[]).forEach((item: Element, index: number) => {
@@ -631,10 +722,11 @@ function initContactForm() {
 // ============================================================================
 
 function initParticles() {
+  // Skip particles entirely if reduced motion is preferred
+  if (REDUCED_MOTION) return;
+  
   // Optimized particle count for performance
-  // Mobile gets fewer particles and simpler animations
-  const isMobile = window.innerWidth < 768;
-  const particleCount = isMobile ? 10 : 60;
+  const particleCount = MOBILE ? 8 : 60;
   const container = document.querySelector('.particle-container');
   
   if (!container) return;
@@ -654,13 +746,12 @@ function initParticles() {
     
     container.appendChild(particle);
     
-    // Simpler animations on mobile for better performance
-    const isMobile = window.innerWidth < 768;
+    // Simpler, more efficient animations on mobile
     gsap.to(particle, {
-      y: `+=${isMobile ? Math.random() * 100 - 50 : Math.random() * 200 - 100}`,
-      x: `+=${isMobile ? Math.random() * 100 - 50 : Math.random() * 200 - 100}`,
+      y: `+=${MOBILE ? Math.random() * 80 - 40 : Math.random() * 200 - 100}`,
+      x: `+=${MOBILE ? Math.random() * 80 - 40 : Math.random() * 200 - 100}`,
       opacity: Math.random() * 0.5,
-      duration: isMobile ? Math.random() * 4 + 3 : Math.random() * 3 + 2,
+      duration: MOBILE ? Math.random() * 5 + 4 : Math.random() * 3 + 2,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
@@ -673,9 +764,8 @@ function initParticles() {
 // ============================================================================
 
 function init3DCards() {
-  // Disable 3D effects on mobile for better performance
-  const isMobile = window.innerWidth < 768;
-  if (isMobile) return;
+  // Disable 3D effects on mobile or if reduced motion is preferred
+  if (MOBILE || TOUCH_DEVICE || REDUCED_MOTION) return;
   
   // Add card-3d class to achievement and project cards
   document.querySelectorAll('.achievement-card, .project-card').forEach((card) => {
@@ -767,8 +857,8 @@ function init3DCards() {
 // ============================================================================
 
 function initCursor() {
-  // Disable custom cursor on mobile/touch devices
-  if ('ontouchstart' in window || window.innerWidth < 768) return;
+  // Disable custom cursor on mobile/touch devices or if reduced motion is preferred
+  if (TOUCH_DEVICE || MOBILE || REDUCED_MOTION) return;
   
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
@@ -855,8 +945,8 @@ function initTypingEffect() {
 // ============================================================================
 
 function initMagneticButtons() {
-  // Disable magnetic effect on mobile for better performance
-  if (window.innerWidth < 768) return;
+  // Disable magnetic effect on mobile or touch devices
+  if (MOBILE || TOUCH_DEVICE || REDUCED_MOTION) return;
   
   const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
   
@@ -1040,8 +1130,8 @@ function initGlitchEffect() {
 // ============================================================================
 
 function initHolographicCards() {
-  // Disable holographic effects on mobile for better performance
-  if (window.innerWidth < 768) return;
+  // Disable holographic effects on mobile or if reduced motion preferred
+  if (MOBILE || REDUCED_MOTION) return;
   
   const cards = document.querySelectorAll('.glass-card-hover, .achievement-card, .project-card');
   

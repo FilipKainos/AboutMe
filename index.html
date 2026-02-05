@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta name="description" content="Filip Szwerluga - Software Engineer passionate about creating innovative software solutions with AI and modern technologies." />
   <meta name="keywords" content="Filip Szwerluga, Software Engineer, Web Developer, JavaScript, TypeScript, React, AI, Portfolio, Full Stack" />
   <meta name="author" content="Filip Szwerluga" />
   <meta name="theme-color" content="#1e3a5f" />
+  
+  <!-- Performance Hints -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -25,8 +31,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons CDN - Async loading for better performance -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" as="script" href="/src/main.ts" />
 </head>
 <body>
   <!-- Preloader -->

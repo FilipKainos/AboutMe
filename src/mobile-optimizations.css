@@ -1,0 +1,108 @@
+/* ============================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Force GPU acceleration for animated elements */
+.achievement-card,
+.project-card,
+.glass-card-hover,
+.animate-section {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimize animations on mobile */
+@media (max-width: 768px) {
+  /* Disable heavy effects */
+  .card-3d,
+  .holographic-overlay,
+  .card-spotlight {
+    display: none !important;
+  }
+  
+  /* Simpler transitions */
+  * {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Reduce particle complexity */
+  .particle {
+    animation-duration: 4s !important;
+  }
+  
+  /* Optimize transforms */
+  .achievement-card,
+  .project-card {
+    transform: none !important;
+    will-change: opacity;
+  }
+  
+  /* Remove unnecessary shadows */
+  .glass-card,
+  .glass-card-hover {
+    box-shadow: none !important;
+  }
+  
+  /* Simplify blur effects */
+  .glass-card::before,
+  .glass-card-hover::before {
+    backdrop-filter: blur(5px) !important;
+  }
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .particle {
+    display: none !important;
+  }
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize images */
+img {
+  content-visibility: auto;
+}
+
+/* Optimize scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto; /* Instant scroll on mobile for better performance */
+  }
+}
+
+/* GPU layer hints */
+.hero-title,
+.hero-subtitle,
+.hero-description {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+@media (max-width: 768px) {
+  .achievement-card.animated,
+  .project-card.animated {
+    will-change: auto;
+  }
+}
