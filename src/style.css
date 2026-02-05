@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-@import './mobile-optimizations.css';
 
 @tailwind base;
 @tailwind components;
@@ -17,6 +16,9 @@
   body {
     @apply bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white font-sans antialiased overflow-x-hidden;
     min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -568,3 +570,98 @@ nav.scroll-up {
 .fade-in:nth-child(4) { animation-delay: 0.4s; }
 .fade-in:nth-child(5) { animation-delay: 0.5s; }
 .fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+/* ============================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Force GPU acceleration for animated elements */
+.achievement-card,
+.project-card,
+.glass-card-hover,
+.animate-section {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimize animations on mobile */
+@media (max-width: 768px) {
+  /* Disable heavy effects */
+  .card-3d,
+  .holographic-overlay,
+  .card-spotlight {
+    display: none !important;
+  }
+  
+  /* Simpler transitions */
+  * {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Reduce particle complexity */
+  .particle {
+    animation-duration: 4s !important;
+  }
+  
+  /* Optimize transforms */
+  .achievement-card,
+  .project-card {
+    transform: none !important;
+    will-change: opacity;
+  }
+  
+  /* Remove unnecessary shadows */
+  .glass-card,
+  .glass-card-hover {
+    box-shadow: none !important;
+  }
+  
+  /* Simplify blur effects */
+  .glass-card::before,
+  .glass-card-hover::before {
+    backdrop-filter: blur(5px) !important;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .particle {
+    display: none !important;
+  }
+}
+
+/* Optimize images */
+img {
+  content-visibility: auto;
+}
+
+/* GPU layer hints */
+.hero-title,
+.hero-subtitle,
+.hero-description {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+@media (max-width: 768px) {
+  .achievement-card.animated,
+  .project-card.animated {
+    will-change: auto;
+  }
+}
