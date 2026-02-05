@@ -2,13 +2,12 @@ import { defineConfig } from 'vite';
 import nunjucks from 'vite-plugin-nunjucks';
 import path from 'path';
 
-// Base URL configuration for different deployment targets
-// Set VITE_BASE_URL environment variable for AWS or other deployments
-const base = process.env.VITE_BASE_URL || './';
+// Base URL configuration for GitHub Pages
+// GitHub Pages serves the AboutMe repository at /AboutMe/ subdirectory
+const base = '/AboutMe/';
 
 export default defineConfig({
-  // Use './' for relative paths (works for GitHub Pages and AWS S3/CloudFront)
-  // Can be overridden with VITE_BASE_URL environment variable
+  // Use '/AboutMe/' for GitHub Pages (subdirectory deployment)
   base: base,
   plugins: [
     nunjucks({
