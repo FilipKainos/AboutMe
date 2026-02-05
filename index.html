@@ -24,6 +24,9 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <!-- Preloader -->
@@ -127,15 +130,13 @@
       </div>
       
       <div class="hero-scroll-indicator">
-        <svg class="w-6 h-10 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
+        <i data-lucide="chevron-down" class="animate-bounce" style="width: 32px; height: 32px;"></i>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="animate-section section-container relative">
+  <section id="about" class="animate-section section-container relative -mt-16">
     <div class="absolute inset-0 -z-10">
       <div class="absolute top-1/2 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
@@ -155,16 +156,28 @@
             <div class="absolute inset-0 opacity-30">
               <pre class="text-xs text-green-400 font-mono p-4 leading-relaxed overflow-hidden">
 <span class="text-blue-400">const</span> developer = {
-  name: <span class="text-yellow-300">"Filip"</span>,
+  name: <span class="text-yellow-300">"Filip Szwerluga"</span>,
   role: <span class="text-yellow-300">"Software Engineer"</span>,
-  skills: [<span class="text-yellow-300">"TypeScript"</span>, <span class="text-yellow-300">"React"</span>],
-  passion: <span class="text-yellow-300">"Building great software"</span>
+  company: <span class="text-yellow-300">"Kainos"</span>,
+  location: <span class="text-yellow-300">"Northern Ireland"</span>,
+  skills: [<span class="text-yellow-300">"TypeScript"</span>, <span class="text-yellow-300">"React"</span>, <span class="text-yellow-300">"Node.js"</span>],
+  tools: [<span class="text-yellow-300">"Claude"</span>, <span class="text-yellow-300">"Copilot"</span>, <span class="text-yellow-300">"GSAP"</span>],
+  passion: <span class="text-yellow-300">"Building brilliant software"</span>,
+  coffee: <span class="text-purple-400">true</span>,
+  learning: <span class="text-purple-400">true</span>
 };
 
-<span class="text-purple-400">function</span> <span class="text-blue-300">createAwesome</span>() {
-  <span class="text-blue-400">return</span> developer.skills
-    .<span class="text-blue-300">map</span>(skill => innovate(skill))
-    .<span class="text-blue-300">filter</span>(result => result.isAmazing);
+<span class="text-purple-400">async function</span> <span class="text-blue-300">createAwesome</span>(idea, technology) {
+  <span class="text-blue-400">const</span> requirements = <span class="text-blue-400">await</span> analyse(idea);
+  <span class="text-blue-400">const</span> design = architect(requirements);
+  
+  <span class="text-blue-400">const</span> code = developer.skills
+    .<span class="text-blue-300">map</span>(skill => <span class="text-blue-300">innovate</span>(skill, technology))
+    .<span class="text-blue-300">filter</span>(result => result.isAmazing)
+    .<span class="text-blue-300">reduce</span>((acc, cur) => <span class="text-blue-300">merge</span>(acc, cur));
+  
+  <span class="text-blue-400">const</span> tested = <span class="text-blue-400">await</span> runTests(code);
+  <span class="text-blue-400">return</span> deploy(tested, <span class="text-yellow-300">"production"</span>);
 }
               </pre>
             </div>
@@ -179,16 +192,16 @@
             
             <!-- Floating Tech Icons -->
             <div class="absolute top-4 left-4 floating-icon glass-card p-3 rounded-xl">
-              <span class="text-2xl">💻</span>
+              <i data-lucide="laptop" class="text-blue-400" style="width: 24px; height: 24px;"></i>
             </div>
             <div class="absolute top-4 right-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 0.5s;">
-              <span class="text-2xl">🚀</span>
+              <i data-lucide="rocket" class="text-purple-400" style="width: 24px; height: 24px;"></i>
             </div>
             <div class="absolute bottom-4 left-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 1s;">
-              <span class="text-2xl">⚡</span>
+              <i data-lucide="zap" class="text-yellow-400" style="width: 24px; height: 24px;"></i>
             </div>
             <div class="absolute bottom-4 right-4 floating-icon glass-card p-3 rounded-xl" style="animation-delay: 1.5s;">
-              <span class="text-2xl">🎯</span>
+              <i data-lucide="target" class="text-pink-400" style="width: 24px; height: 24px;"></i>
             </div>
           </div>
         </div>
@@ -202,7 +215,7 @@
       <div class="space-y-6">
         <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
           <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
-            <span class="text-blue-400">🎯</span> My Mission
+            <i data-lucide="target" class="text-blue-400" style="width: 28px; height: 28px;"></i> My Mission
           </h3>
           <p class="text-white/70 leading-relaxed">
             I'm a Software Engineer at Kainos, passionate about creating innovative software solutions that make a real difference. I believe in the power of clean code, intuitive design, and cutting-edge technology to solve complex problems.
@@ -211,16 +224,16 @@
         
         <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
           <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
-            <span class="text-purple-400">🔮</span> My Approach
+            <i data-lucide="sparkles" class="text-purple-400" style="width: 28px; height: 28px;"></i> My Approach
           </h3>
           <p class="text-white/70 leading-relaxed">
-            I embrace AI-powered development, leveraging tools like GitHub Copilot and ChatGPT to enhance productivity while maintaining code quality. Every project is an opportunity to learn, innovate, and push the boundaries of what's possible.
+            I embrace AI-powered development, leveraging tools like GitHub Copilot, Claude (Haiku, Sonnet and Opus) and Gemini 3 Pro to enhance productivity whilst maintaining code quality. Every project is an opportunity to learn, innovate, and push the boundaries of what's possible.
           </p>
         </div>
         
         <div class="glass-card p-6 hover:bg-white/10 transition-all duration-300">
           <h3 class="text-2xl font-bold mb-3 flex items-center gap-3">
-            <span class="text-pink-400">✨</span> What Drives Me
+            <i data-lucide="heart" class="text-pink-400" style="width: 28px; height: 28px;"></i> What Drives Me
           </h3>
           <p class="text-white/70 leading-relaxed">
             The thrill of turning ideas into reality. Whether it's a sleek web application, an interactive game, or an automation tool—I love seeing concepts come to life through code.
@@ -230,15 +243,15 @@
         <!-- Quick Stats -->
         <div class="flex flex-wrap gap-4 pt-4">
           <div class="glass-card px-4 py-2 flex items-center gap-2">
-            <span class="text-green-400">📍</span>
+            <i data-lucide="map-pin" class="text-green-400" style="width: 18px; height: 18px;"></i>
             <span class="text-white/70">Northern Ireland</span>
           </div>
           <div class="glass-card px-4 py-2 flex items-center gap-2">
-            <span class="text-blue-400">💼</span>
+            <i data-lucide="briefcase" class="text-blue-400" style="width: 18px; height: 18px;"></i>
             <span class="text-white/70">Kainos</span>
           </div>
           <div class="glass-card px-4 py-2 flex items-center gap-2">
-            <span class="text-purple-400">🎓</span>
+            <i data-lucide="graduation-cap" class="text-purple-400" style="width: 18px; height: 18px;"></i>
             <span class="text-white/70">Always Learning</span>
           </div>
         </div>
@@ -257,60 +270,53 @@
       <!-- Achievement Card 1 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-blue-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-          </svg>
+          <i data-lucide="code-2" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">Full Stack Development</h3>
-        <p class="text-white/70 mb-4">Building robust web applications with TypeScript, Express.js backend and modern templating engines</p>
+        <p class="text-white/70 mb-4">Building robust web applications with React, TypeScript, Express.js and modern frameworks including Nunjucks templating.</p>
         <div class="flex gap-2 flex-wrap">
+          <span class="tech-badge">React</span>
           <span class="tech-badge">TypeScript</span>
           <span class="tech-badge">Express.js</span>
-          <span class="tech-badge">Nunjucks</span>
         </div>
       </div>
 
       <!-- Achievement Card 2 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-purple-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-          </svg>
+          <i data-lucide="palette" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">Frontend & Styling</h3>
-        <p class="text-white/70 mb-4">Creating beautiful, responsive interfaces with modern CSS frameworks and attention to detail</p>
+        <p class="text-white/70 mb-4">Creating beautiful, responsive interfaces with modern CSS frameworks, animations and attention to detail.</p>
         <div class="flex gap-2 flex-wrap">
-          <span class="tech-badge">CSS3</span>
-          <span class="tech-badge">Tailwind</span>
           <span class="tech-badge">GSAP</span>
+          <span class="tech-badge">Tailwind</span>
+          <span class="tech-badge">DaisyUI</span>
+          <span class="tech-badge">Lucide</span>
         </div>
       </div>
 
       <!-- Achievement Card 3 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-pink-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-          </svg>
+          <i data-lucide="database" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">Database Management</h3>
-        <p class="text-white/70 mb-4">Designing and optimizing relational databases with efficient queries and data modeling</p>
+        <p class="text-white/70 mb-4">Designing and optimising relational databases with MySQL and PostgreSQL, including efficient queries and data modelling.</p>
         <div class="flex gap-2 flex-wrap">
           <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">PostgreSQL</span>
           <span class="tech-badge">SQL</span>
-          <span class="tech-badge">Database Design</span>
         </div>
       </div>
 
       <!-- Achievement Card 4 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-green-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
-          </svg>
+          <i data-lucide="server" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">DevOps & Deployment</h3>
-        <p class="text-white/70 mb-4">Experienced in CI/CD pipelines, GitHub Actions, and automated deployment strategies</p>
+        <p class="text-white/70 mb-4">Experienced in CI/CD pipelines, GitHub Actions, and automated deployment strategies.</p>
         <div class="flex gap-2 flex-wrap">
           <span class="tech-badge">GitHub Actions</span>
           <span class="tech-badge">CI/CD</span>
@@ -320,12 +326,10 @@
       <!-- Achievement Card 5 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-yellow-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-          </svg>
+          <i data-lucide="brain" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">AI Integration</h3>
-        <p class="text-white/70 mb-4">Leveraging artificial intelligence to enhance development workflows and create intelligent solutions</p>
+        <p class="text-white/70 mb-4">Leveraging artificial intelligence to enhance development workflows and create intelligent solutions.</p>
         <div class="flex gap-2 flex-wrap">
           <span class="tech-badge">AI Tools</span>
           <span class="tech-badge">Automation</span>
@@ -335,12 +339,10 @@
       <!-- Achievement Card 6 -->
       <div class="achievement-card card-3d glass-card-hover p-8 preserve-3d">
         <div class="text-red-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-          </svg>
+          <i data-lucide="git-branch" class="" style="width: 48px; height: 48px;"></i>
         </div>
         <h3 class="text-2xl font-bold mb-3">Version Control Expert</h3>
-        <p class="text-white/70 mb-4">Advanced Git workflows, collaborative development, and project management best practices</p>
+        <p class="text-white/70 mb-4">Advanced Git workflows, collaborative development, and project management best practices.</p>
         <div class="flex gap-2 flex-wrap">
           <span class="tech-badge">Git</span>
           <span class="tech-badge">Collaboration</span>
@@ -367,14 +369,16 @@
            class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
            data-project-url="https://filipkainos.github.io/CalorieTrackerApp/">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
-            <div class="text-6xl">🥗</div>
+            <i data-lucide="apple" class="text-green-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-green-400 transition-colors">Calorie Tracker</h3>
-          <p class="text-white/70 mb-4">Comprehensive nutrition tracking application for monitoring daily calorie intake and maintaining healthy habits</p>
+          <p class="text-white/70 mb-4">Comprehensive nutrition tracking application for monitoring daily calorie intake and maintaining healthy habits.</p>
           <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">TypeScript</span>
+            <span class="tech-badge text-xs">React</span>
+            <span class="tech-badge text-xs">Nunjucks</span>
             <span class="tech-badge text-xs">JavaScript</span>
             <span class="tech-badge text-xs">HTML/CSS</span>
-            <span class="tech-badge text-xs">LocalStorage</span>
           </div>
           <div class="project-status flex items-center">
             <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
@@ -387,13 +391,13 @@
            class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
            data-project-url="https://filipkainos.github.io/2PlayerGames/index.html">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-pink-500/20 to-red-500/20 flex items-center justify-center">
-            <div class="text-6xl">🎮</div>
+            <i data-lucide="gamepad-2" class="text-pink-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-pink-400 transition-colors">2 Player Games</h3>
-          <p class="text-white/70 mb-4">Interactive gaming collection featuring multiplayer games for competitive fun</p>
+          <p class="text-white/70 mb-4">Interactive gaming collection featuring multiplayer games for competitive fun.</p>
           <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">HTML</span>
             <span class="tech-badge text-xs">JavaScript</span>
-            <span class="tech-badge text-xs">Canvas</span>
           </div>
           <div class="project-status flex items-center">
             <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
@@ -404,10 +408,10 @@
         <!-- Future Major Project Placeholder -->
         <div class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
-            <div class="text-6xl">🚀</div>
+            <i data-lucide="rocket" class="text-yellow-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Coming Soon</h3>
-          <p class="text-white/70 mb-4">Exciting new major project in development. Stay tuned for innovative solutions!</p>
+          <p class="text-white/70 mb-4">Exciting new major project in development. Stay tuned for innovative solutions.</p>
           <div class="flex gap-2 flex-wrap mb-4">
             <span class="tech-badge text-xs">In Progress</span>
           </div>
@@ -430,10 +434,10 @@
            class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
            data-project-url="https://filipkainos.github.io/SortingHat/">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-            <div class="text-6xl">🎲</div>
+            <i data-lucide="dices" class="text-blue-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Team Randomiser</h3>
-          <p class="text-white/70 mb-4">Interactive team sorting application for fair and random team generation</p>
+          <p class="text-white/70 mb-4">Interactive team sorting application for fair and random team generation.</p>
           <div class="flex gap-2 flex-wrap mb-4">
             <span class="tech-badge text-xs">JavaScript</span>
             <span class="tech-badge text-xs">HTML/CSS</span>
@@ -449,13 +453,16 @@
            class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer block"
            data-project-url="https://filipkainos.github.io/EggTimer/">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-            <div class="text-6xl">⏱️</div>
+            <i data-lucide="timer" class="text-purple-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Egg Timer</h3>
-          <p class="text-white/70 mb-4">Elegant countdown timer application with customizable intervals and audio notifications</p>
+          <p class="text-white/70 mb-4">Elegant countdown timer application with customisable intervals and audio notifications.</p>
           <div class="flex gap-2 flex-wrap mb-4">
+            <span class="tech-badge text-xs">HCL</span>
             <span class="tech-badge text-xs">JavaScript</span>
             <span class="tech-badge text-xs">CSS</span>
+            <span class="tech-badge text-xs">Shell</span>
+            <span class="tech-badge text-xs">HTML</span>
           </div>
           <div class="project-status flex items-center">
             <span class="status-dot w-2 h-2 rounded-full mr-2 animate-pulse"></span>
@@ -466,10 +473,10 @@
         <!-- Future Minor Project Placeholder -->
         <div class="project-card card-3d glass-card-hover p-6 preserve-3d group cursor-pointer">
           <div class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
-            <div class="text-6xl">💡</div>
+            <i data-lucide="lightbulb" class="text-indigo-400" style="width: 80px; height: 80px;"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2 group-hover:text-indigo-400 transition-colors">More Projects</h3>
-          <p class="text-white/70 mb-4">Additional mini tools and utilities currently in development</p>
+          <p class="text-white/70 mb-4">Additional mini tools and utilities currently in development.</p>
           <div class="flex gap-2 flex-wrap mb-4">
             <span class="tech-badge text-xs">Coming Soon</span>
           </div>
@@ -492,15 +499,16 @@
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
       <!-- Professional Experience -->
       <div>
-        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left">
-          <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">💼 Professional</span>
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+          <i data-lucide="briefcase" class="text-blue-400" style="width: 32px; height: 32px;"></i>
+          <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Professional</span>
         </h3>
         
         <!-- Timeline Item 1 -->
         <div class="timeline-item relative pl-8 pb-12 border-l-2 border-blue-500/30">
           <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-blue-500 ring-4 ring-blue-500/20"></div>
           <div class="glass-card p-6">
-            <div class="text-blue-400 font-bold mb-2">Present</div>
+            <div class="text-blue-400 font-bold mb-2">2025 - Present</div>
             <h4 class="text-xl font-bold mb-2">Software Engineer @ Kainos</h4>
             <p class="text-white/70">Developing enterprise web applications using TypeScript, Express.js, and modern frontend technologies. Implementing CI/CD pipelines and best practices.</p>
           </div>
@@ -521,16 +529,17 @@
           <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-pink-500 ring-4 ring-pink-500/20"></div>
           <div class="glass-card p-6">
             <div class="text-pink-400 font-bold mb-2">2023</div>
-            <h4 class="text-xl font-bold mb-2">Training & Certifications</h4>
-            <p class="text-white/70">Completed comprehensive training in software engineering methodologies and modern development practices.</p>
+            <h4 class="text-xl font-bold mb-2">Education & Training</h4>
+            <p class="text-white/70">Attended Bangor Grammar School where I studied Computer Science, History and Mathematics, building a strong foundation in programming and software engineering methodologies.</p>
           </div>
         </div>
       </div>
 
       <!-- Personal Projects & Growth -->
       <div>
-        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left">
-          <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">🌟 Personal</span>
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+          <i data-lucide="sparkles" class="text-purple-400" style="width: 32px; height: 32px;"></i>
+          <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Personal</span>
         </h3>
         
         <!-- Timeline Item 1 -->
@@ -538,8 +547,8 @@
           <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-green-500 ring-4 ring-green-500/20"></div>
           <div class="glass-card p-6">
             <div class="text-green-400 font-bold mb-2">2025</div>
-            <h4 class="text-xl font-bold mb-2">Portfolio Expansion</h4>
-            <p class="text-white/70">Launched Calorie Tracker app and expanded gaming platform with new features and improved UX.</p>
+            <h4 class="text-xl font-bold mb-2">Portfolio & Side Projects</h4>
+            <p class="text-white/70">Launched Calorie Tracker app, expanded gaming platform, and created Team Randomiser, Egg Timer, and 2 Player Games platforms.</p>
           </div>
         </div>
 
@@ -548,8 +557,8 @@
           <div class="absolute left-0 top-0 w-4 h-4 -ml-[9px] rounded-full bg-yellow-500 ring-4 ring-yellow-500/20"></div>
           <div class="glass-card p-6">
             <div class="text-yellow-400 font-bold mb-2">2024</div>
-            <h4 class="text-xl font-bold mb-2">Side Projects Launch</h4>
-            <p class="text-white/70">Created Team Randomiser, Egg Timer, and 2 Player Games platforms, exploring different aspects of web development.</p>
+            <h4 class="text-xl font-bold mb-2">Learning & Development</h4>
+            <p class="text-white/70">Focused on learning programming in school, building foundational skills in web development and exploring different technologies.</p>
           </div>
         </div>
 
@@ -580,11 +589,14 @@
         <div class="tech-grid flex flex-wrap gap-3">
           <span class="tech-badge">TypeScript</span>
           <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">React</span>
           <span class="tech-badge">HTML5</span>
           <span class="tech-badge">CSS3</span>
           <span class="tech-badge">Tailwind CSS</span>
+          <span class="tech-badge">DaisyUI</span>
           <span class="tech-badge">Nunjucks</span>
           <span class="tech-badge">GSAP</span>
+          <span class="tech-badge">Lucide Icons</span>
         </div>
       </div>
 
@@ -595,6 +607,7 @@
           <span class="tech-badge">Node.js</span>
           <span class="tech-badge">Express.js</span>
           <span class="tech-badge">MySQL</span>
+          <span class="tech-badge">PostgreSQL</span>
           <span class="tech-badge">REST APIs</span>
           <span class="tech-badge">Vite</span>
         </div>
@@ -608,8 +621,11 @@
           <span class="tech-badge">GitHub Actions</span>
           <span class="tech-badge">VS Code</span>
           <span class="tech-badge">GitHub Copilot</span>
+          <span class="tech-badge">Claude AI</span>
+          <span class="tech-badge">Gemini AI</span>
           <span class="tech-badge">CI/CD</span>
-          <span class="tech-badge">npm</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">AWS</span>
         </div>
       </div>
     </div>
@@ -651,9 +667,7 @@
       <div class="space-y-6">
         <a href="https://linkedin.com/in/filipszwerluga" target="_blank" class="glass-card-hover p-6 flex items-center gap-4 block">
           <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-            <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
+            <i data-lucide="linkedin" class="text-blue-400" style="width: 24px; height: 24px;"></i>
           </div>
           <div>
             <div class="font-bold">LinkedIn</div>
@@ -663,9 +677,7 @@
 
         <a href="https://github.com/FilipKainos" target="_blank" class="glass-card-hover p-6 flex items-center gap-4 block">
           <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-            <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
+            <i data-lucide="github" class="text-purple-400" style="width: 24px; height: 24px;"></i>
           </div>
           <div>
             <div class="font-bold">GitHub</div>
@@ -675,9 +687,7 @@
 
         <a href="mailto:filip.szwerluga@kainos.com" class="glass-card-hover p-6 flex items-center gap-4 block">
           <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center">
-            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
+            <i data-lucide="mail" class="text-pink-400" style="width: 24px; height: 24px;"></i>
           </div>
           <div>
             <div class="font-bold">Email</div>
@@ -687,9 +697,7 @@
 
         <a href="#projects" class="glass-card-hover p-6 flex items-center gap-4 block">
           <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
-            <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
+            <i data-lucide="folder-open" class="text-yellow-400" style="width: 24px; height: 24px;"></i>
           </div>
           <div>
             <div class="font-bold">Portfolio</div>
@@ -742,9 +750,7 @@
 
   <!-- Back to Top Button -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-purple-500/30 opacity-0 invisible transition-all duration-300 hover:scale-110 hover:shadow-xl z-50 flex items-center justify-center">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-    </svg>
+    <i data-lucide="arrow-up" style="width: 24px; height: 24px;"></i>
   </button>
 
   <!-- Footer -->
@@ -762,19 +768,13 @@
         <!-- Footer Social Links -->
         <div class="flex justify-center gap-4 mb-8">
           <a href="https://linkedin.com/in/filipszwerluga" target="_blank" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-blue-500/20 transition-all hover:scale-110">
-            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
+            <i data-lucide="linkedin" class="text-blue-400" style="width: 20px; height: 20px;"></i>
           </a>
           <a href="https://github.com/FilipKainos" target="_blank" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-purple-500/20 transition-all hover:scale-110">
-            <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
+            <i data-lucide="github" class="text-purple-400" style="width: 20px; height: 20px;"></i>
           </a>
           <a href="mailto:filip.szwerluga@kainos.com" class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-pink-500/20 transition-all hover:scale-110">
-            <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
+            <i data-lucide="mail" class="text-pink-400" style="width: 20px; height: 20px;"></i>
           </a>
         </div>
         

@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initAfterLoad() {
+  // Initialize Lucide icons from CDN (loaded in HTML)
+  if (typeof (window as unknown as { lucide?: { createIcons: () => void } }).lucide !== 'undefined') {
+    (window as unknown as { lucide: { createIcons: () => void } }).lucide.createIcons();
+  }
+  
   initAnimations();
   initSmoothScroll();
   initNavigation();
@@ -624,8 +629,8 @@ function initContactForm() {
 // ============================================================================
 
 function initParticles() {
-  // Reduced particle count for better performance
-  const particleCount = window.innerWidth < 768 ? 15 : 30;
+  // Doubled particle count for more visual impact
+  const particleCount = window.innerWidth < 768 ? 30 : 60;
   const container = document.querySelector('.particle-container');
   
   if (!container) return;
