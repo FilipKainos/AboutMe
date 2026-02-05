@@ -309,7 +309,7 @@ function initAnimations() {
     }, {
       scrollTrigger: {
         trigger: section,
-        start: 'top 90%',
+        start: 'top 98%', // Trigger much earlier to avoid needing to scroll back up
         end: 'bottom 20%',
         toggleActions: 'play none none none',
       },
@@ -321,34 +321,35 @@ function initAnimations() {
   });
 
   // Achievement cards with INSANE 3D effect
+  const isMobile = window.innerWidth < 768;
   (gsap.utils.toArray('.achievement-card') as Element[]).forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
-        start: 'top 90%',
+        start: 'top 95%', // Earlier trigger for mobile friendliness
         end: 'bottom 20%',
         toggleActions: 'play none none none',
       },
     });
     
     tl.fromTo(card, {
-      y: 150,
+      y: isMobile ? 50 : 150,
       opacity: 0,
-      rotationY: index % 2 === 0 ? -180 : 180,
-      rotationX: 45,
-      scale: 0.3,
-      filter: 'blur(20px) brightness(2)',
+      rotationY: isMobile ? 0 : (index % 2 === 0 ? -180 : 180),
+      rotationX: isMobile ? 0 : 45,
+      scale: isMobile ? 0.8 : 0.3,
+      filter: isMobile ? 'blur(0px) brightness(1)' : 'blur(20px) brightness(2)',
       transformOrigin: 'center center',
     }, {
-      duration: 1.2,
+      duration: isMobile ? 0.6 : 1.2,
       y: 0,
       opacity: 1,
       rotationY: 0,
       rotationX: 0,
       scale: 1,
       filter: 'blur(0px) brightness(1)',
-      ease: 'expo.out',
-      delay: index * 0.15,
+      ease: 'power2.out',
+      delay: index * 0.1,
     })
       .to(card, {
         duration: 0.6,
@@ -371,32 +372,33 @@ function initAnimations() {
   });
 
   // Project cards with SPECTACULAR flip-in effect
+  const isMobileProjects = window.innerWidth < 768;
   (gsap.utils.toArray('.project-card') as Element[]).forEach((card: Element, index: number) => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
-        start: 'top 90%',
+        start: 'top 95%', // Earlier trigger
         end: 'bottom 20%',
         toggleActions: 'play none none none',
       },
     });
     
     tl.fromTo(card, {
-      rotationY: -180,
-      rotationX: 45,
+      rotationY: isMobileProjects ? 0 : -180,
+      rotationX: isMobileProjects ? 0 : 45,
       opacity: 0,
-      scale: 0,
-      z: -500,
+      scale: isMobileProjects ? 0.8 : 0,
+      z: isMobileProjects ? 0 : -500,
       transformOrigin: 'center center',
     }, {
-      duration: 1.5,
+      duration: isMobileProjects ? 0.6 : 1.5,
       rotationY: 0,
       rotationX: 0,
       opacity: 1,
       scale: 1,
       z: 0,
-      ease: 'expo.out',
-      delay: index * 0.1,
+      ease: 'power2.out',
+      delay: index * 0.08,
     })
       .to(card, {
         duration: 1,
@@ -417,7 +419,7 @@ function initAnimations() {
     gsap.from(item, {
       scrollTrigger: {
         trigger: item,
-        start: 'top 90%',
+        start: 'top 95%',
       },
       x: index % 2 === 0 ? -100 : 100,
       opacity: 0,
@@ -439,7 +441,7 @@ function initAnimations() {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '#technologies',
-          start: 'top 85%',
+          start: 'top 95%',
         },
       },
     );
@@ -450,7 +452,7 @@ function initAnimations() {
     gsap.from(stat, {
       scrollTrigger: {
         trigger: stat,
-        start: 'top 90%',
+        start: 'top 95%',
       },
       textContent: '0',
       duration: 2,
@@ -629,8 +631,10 @@ function initContactForm() {
 // ============================================================================
 
 function initParticles() {
-  // Doubled particle count for more visual impact
-  const particleCount = window.innerWidth < 768 ? 30 : 60;
+  // Optimized particle count for performance
+  // Mobile gets fewer particles and simpler animations
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 10 : 60;
   const container = document.querySelector('.particle-container');
   
   if (!container) return;
@@ -650,11 +654,13 @@ function initParticles() {
     
     container.appendChild(particle);
     
+    // Simpler animations on mobile for better performance
+    const isMobile = window.innerWidth < 768;
     gsap.to(particle, {
-      y: `+=${Math.random() * 200 - 100}`,
-      x: `+=${Math.random() * 200 - 100}`,
+      y: `+=${isMobile ? Math.random() * 100 - 50 : Math.random() * 200 - 100}`,
+      x: `+=${isMobile ? Math.random() * 100 - 50 : Math.random() * 200 - 100}`,
       opacity: Math.random() * 0.5,
-      duration: Math.random() * 3 + 2,
+      duration: isMobile ? Math.random() * 4 + 3 : Math.random() * 3 + 2,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
@@ -667,6 +673,10 @@ function initParticles() {
 // ============================================================================
 
 function init3DCards() {
+  // Disable 3D effects on mobile for better performance
+  const isMobile = window.innerWidth < 768;
+  if (isMobile) return;
+  
   // Add card-3d class to achievement and project cards
   document.querySelectorAll('.achievement-card, .project-card').forEach((card) => {
     card.classList.add('card-3d');
@@ -757,6 +767,9 @@ function init3DCards() {
 // ============================================================================
 
 function initCursor() {
+  // Disable custom cursor on mobile/touch devices
+  if ('ontouchstart' in window || window.innerWidth < 768) return;
+  
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
   cursor.style.cssText = `
@@ -842,6 +855,9 @@ function initTypingEffect() {
 // ============================================================================
 
 function initMagneticButtons() {
+  // Disable magnetic effect on mobile for better performance
+  if (window.innerWidth < 768) return;
+  
   const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
   
   buttons.forEach((button) => {
@@ -1024,6 +1040,9 @@ function initGlitchEffect() {
 // ============================================================================
 
 function initHolographicCards() {
+  // Disable holographic effects on mobile for better performance
+  if (window.innerWidth < 768) return;
+  
   const cards = document.querySelectorAll('.glass-card-hover, .achievement-card, .project-card');
   
   cards.forEach((card) => {
